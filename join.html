@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seranova — הצטרף לקהילה</title>
+<title>Seranova — Join the Community</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -11,58 +11,53 @@
   --cream:#f0ebe0;--c2:rgba(240,235,224,.65);--c3:rgba(240,235,224,.28);
   --gold:#c8a84b;--gold2:rgba(200,168,75,.13);
   --green:#3db87a;--green2:rgba(61,184,122,.12);
-  --coral:#e05040;--coral2:rgba(224,80,64,.1);
-  --sky:#3a6fd8;--border:rgba(255,255,255,.07);--b2:rgba(255,255,255,.04);
+  --coral:#e05040;--border:rgba(255,255,255,.07);--b2:rgba(255,255,255,.04);
+  --sky:#3a6fd8;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
 body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh}
-
-/* BG */
 .bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .bg-grad{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(58,111,216,.18),transparent 60%),radial-gradient(ellipse 40% 40% at 90% 90%,rgba(200,168,75,.07),transparent 50%)}
-.star{position:absolute;border-radius:50%;background:#fff}
 .ring{position:absolute;border-radius:50%;border:1px dashed;top:50%;left:50%;transform:translate(-50%,-50%)}
 .r1{width:900px;height:900px;border-color:rgba(200,168,75,.04);animation:spin 80s linear infinite}
 .r2{width:600px;height:600px;border-color:rgba(58,111,216,.04);animation:spin 55s linear infinite reverse}
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
 
-.wrap{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:2.5rem 1rem 3rem}
+/* LANG BAR */
+.lang-bar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:flex-end;padding:.55rem 1.2rem;background:rgba(7,7,14,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.lang-wrap{position:relative}
+.lang-btn{display:flex;align-items:center;gap:.4rem;background:var(--b2);border:1px solid var(--border);border-radius:8px;padding:.32rem .72rem;color:var(--c2);font-family:'DM Sans',sans-serif;font-size:.75rem;cursor:pointer;transition:all .2s}
+.lang-btn:hover{border-color:rgba(200,168,75,.3);color:var(--gold)}
+.lang-drop{position:absolute;top:calc(100% + 6px);right:0;background:var(--ink2);border:1px solid var(--border);border-radius:10px;overflow:hidden;min-width:155px;box-shadow:0 12px 36px rgba(0,0,0,.5);display:none;z-index:200}
+.lang-drop.open{display:block;animation:fadeup .15s ease}
+.lang-opt{display:flex;align-items:center;gap:.55rem;padding:.58rem .9rem;font-size:.77rem;color:var(--c2);cursor:pointer;transition:background .15s}
+.lang-opt:hover{background:var(--b2);color:var(--gold)}
+.lang-opt.sel{color:var(--gold);background:var(--gold2)}
 
-/* HEADER */
+.wrap{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:4.5rem 1rem 3rem}
 .logo{text-align:center;margin-bottom:.5rem}
-.logo-name{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;letter-spacing:-.5px}
+.logo-name{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900}
 .logo-name b{color:var(--gold)}
 .logo-sub{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--c3);margin-top:.3rem}
 .hero{text-align:center;margin:1.8rem 0 2rem;max-width:480px}
 .hero h1{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;line-height:1.3;margin-bottom:.7rem}
 .hero h1 span{color:var(--gold)}
 .hero p{font-size:.82rem;color:var(--c2);line-height:1.75}
-
-/* PERKS */
 .perks{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
 .perk{display:flex;align-items:center;gap:.4rem;background:var(--ink2);border:1px solid var(--border);border-radius:100px;padding:.38rem .88rem;font-size:.72rem;color:var(--c2)}
 .perk b{color:var(--gold)}
-
-/* FORM CARD */
 .fcard{width:100%;max-width:440px;background:rgba(13,13,26,.9);border:1px solid var(--border);border-radius:22px;overflow:hidden;backdrop-filter:blur(24px);box-shadow:0 32px 80px rgba(0,0,0,.5)}
 .fcard-line{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .fcard-body{padding:2rem 1.8rem}
 .fcard-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:.22rem}
 .fcard-sub{font-size:.74rem;color:var(--c3);margin-bottom:1.6rem;line-height:1.55}
-
-/* STEPS */
 .steps{display:flex;gap:.4rem;margin-bottom:1.8rem}
 .step{flex:1;height:2px;border-radius:100px;background:var(--b2);transition:background .4s}
 .step.done{background:var(--gold)}
 .step.active{background:linear-gradient(90deg,var(--gold),rgba(200,168,75,.4))}
-
-/* SCREEN */
 .screen{display:none}
 .screen.active{display:block;animation:fadeup .25s ease}
 @keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
-/* FIELD */
 .fg{margin-bottom:.85rem}
 .fg label{display:block;font-size:.61rem;letter-spacing:.12em;text-transform:uppercase;color:var(--c3);margin-bottom:.3rem}
 .fi-wrap{position:relative}
@@ -76,63 +71,37 @@ body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;m
 .err-msg.show{display:block}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
 @media(max-width:400px){.g2{grid-template-columns:1fr}}
-
-/* PHONE ROW */
 .phone-row{display:flex;gap:.5rem}
-.country-code{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:.78rem .65rem;color:var(--cream);font-family:'DM Mono',monospace;font-size:.82rem;outline:none;width:80px;flex-shrink:0;transition:border-color .2s}
-.country-code:focus{border-color:rgba(200,168,75,.5)}
-
-/* REFERRAL */
-.ref-box{background:var(--gold2);border:1px solid rgba(200,168,75,.18);border-radius:10px;padding:.75rem .9rem;margin-bottom:.85rem;display:flex;align-items:center;gap:.6rem}
-.ref-ico{font-size:1.1rem}
-.ref-txt{font-size:.74rem;color:var(--c2);line-height:1.55}
-.ref-txt b{color:var(--gold)}
-
-/* CHECKBOX */
-.check-row{display:flex;align-items:flex-start;gap:.65rem;margin-bottom:.85rem}
-.check-box{width:18px;height:18px;border-radius:5px;border:1px solid var(--border);background:rgba(255,255,255,.05);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:.1rem}
-.check-box.checked{background:var(--gold);border-color:var(--gold)}
-.check-lbl{font-size:.73rem;color:var(--c2);line-height:1.6;cursor:pointer}
-.check-lbl a{color:var(--gold);text-decoration:none}
-
-/* BTN */
+.ccode{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:.78rem .65rem;color:var(--cream);font-family:'DM Mono',monospace;font-size:.82rem;outline:none;width:80px;flex-shrink:0;transition:border-color .2s}
+.ccode:focus{border-color:rgba(200,168,75,.5)}
+.ref-box{background:var(--gold2);border:1px solid rgba(200,168,75,.18);border-radius:10px;padding:.75rem .9rem;margin-bottom:.85rem;display:none;align-items:center;gap:.6rem}
+.ref-box b{color:var(--gold)}
+.check-row{display:flex;align-items:flex-start;gap:.65rem;margin-bottom:.85rem;cursor:pointer}
+.chk{width:18px;height:18px;border-radius:5px;border:1px solid var(--border);background:rgba(255,255,255,.05);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s;margin-top:.1rem}
+.chk.on{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.chk-lbl{font-size:.73rem;color:var(--c2);line-height:1.6}
+.chk-lbl a{color:var(--gold);text-decoration:none}
 .btn-main{width:100%;background:linear-gradient(135deg,var(--gold),#b8923c);color:var(--ink);border:none;padding:.9rem;border-radius:11px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:.5rem}
 .btn-main:hover{box-shadow:0 10px 32px rgba(200,168,75,.5);transform:translateY(-1px)}
 .btn-main:disabled{opacity:.5;cursor:not-allowed;transform:none!important;box-shadow:none!important}
 .btn-ghost{width:100%;background:transparent;border:1px solid var(--border);color:var(--c2);padding:.72rem;border-radius:11px;font-family:'DM Sans',sans-serif;font-size:.8rem;cursor:pointer;transition:all .2s;margin-top:.5rem}
 .btn-ghost:hover{border-color:rgba(200,168,75,.3);color:var(--gold)}
-
-/* DIVIDER */
-.div{display:flex;align-items:center;gap:.8rem;margin:.9rem 0;color:var(--c3);font-size:.7rem}
-.div::before,.div::after{content:'';flex:1;height:1px;background:var(--border)}
-
-/* SPIN */
 .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(7,7,14,.3);border-top-color:var(--ink);border-radius:50%;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-
-/* SUCCESS */
-.success-wrap{text-align:center;padding:1rem 0}
-.success-ico{width:72px;height:72px;border-radius:50%;background:var(--green2);border:2px solid rgba(61,184,122,.3);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1.2rem}
-.success-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:.5rem}
-.success-sub{font-size:.78rem;color:var(--c2);line-height:1.7;margin-bottom:1.3rem}
+.suc-ico{width:72px;height:72px;border-radius:50%;background:var(--green2);border:2px solid rgba(61,184,122,.3);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1.2rem}
+.suc-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:.5rem;text-align:center}
+.suc-sub{font-size:.78rem;color:var(--c2);line-height:1.7;margin-bottom:1.3rem;text-align:center}
 .ref-code-box{background:var(--ink3);border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;font-family:'DM Mono',monospace;font-size:1.1rem;letter-spacing:.15em;color:var(--gold);text-align:center;margin:.6rem 0 1rem;cursor:pointer;transition:all .2s}
 .ref-code-box:hover{border-color:rgba(200,168,75,.35)}
-
-/* POINTS PREVIEW */
-.pts-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0}
+.pts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0}
 .pt-item{background:var(--ink3);border:1px solid var(--border);border-radius:9px;padding:.6rem .5rem;text-align:center}
 .pt-num{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--gold)}
 .pt-lbl{font-size:.57rem;letter-spacing:.08em;text-transform:uppercase;color:var(--c3);margin-top:.15rem}
-
-/* SOCIAL */
-.social-btns{display:flex;gap:.5rem;margin-top:.6rem}
+.soc-btns{display:flex;gap:.5rem;margin-top:.6rem}
 .s-btn{flex:1;padding:.65rem;border-radius:9px;border:none;font-family:'DM Sans',sans-serif;font-size:.76rem;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.4rem}
 .s-wa{background:#25d366;color:#fff}
 .s-wa:hover{box-shadow:0 4px 16px rgba(37,211,102,.35)}
 .s-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff}
-.s-ig:hover{box-shadow:0 4px 16px rgba(220,39,67,.35)}
-
-/* FOOTER */
 .fcard-foot{padding:.8rem 1.8rem 1.4rem;border-top:1px solid var(--border);text-align:center}
 .already{font-size:.72rem;color:var(--c3)}
 .already a{color:var(--gold);text-decoration:none}
@@ -141,11 +110,27 @@ body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;m
 </style>
 </head>
 <body>
-<div class="bg">
-  <div class="bg-grad"></div>
-  <div class="ring r1"></div>
-  <div class="ring r2"></div>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <div class="lang-wrap">
+    <button class="lang-btn" id="lang-btn" onclick="toggleDrop()">
+      <span id="l-flag">🇬🇧</span>
+      <span id="l-name">English</span>
+      <span style="font-size:.6rem;opacity:.5">▾</span>
+    </button>
+    <div class="lang-drop" id="lang-drop">
+      <div class="lang-opt sel" onclick="setLang('en')">🇬🇧 English</div>
+      <div class="lang-opt" onclick="setLang('he')">🇮🇱 עברית</div>
+      <div class="lang-opt" onclick="setLang('fr')">🇫🇷 Français</div>
+      <div class="lang-opt" onclick="setLang('de')">🇩🇪 Deutsch</div>
+      <div class="lang-opt" onclick="setLang('es')">🇪🇸 Español</div>
+      <div class="lang-opt" onclick="setLang('pt')">🇧🇷 Português</div>
+    </div>
+  </div>
 </div>
+
+<div class="bg"><div class="bg-grad"></div><div class="ring r1"></div><div class="ring r2"></div></div>
 
 <div class="wrap">
   <div class="logo">
@@ -154,280 +139,383 @@ body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;m
   </div>
 
   <div class="hero">
-    <h1>הצטרף לקהילה שנוסעת <span>חכם יותר</span></h1>
-    <p>כל שבוע יעד חדש, קהילה שמחליטה לאן, וזוג שזוכה בחוויה בלתי נשכחת</p>
+    <h1 id="t-heroH">Travel smarter with a <span>community</span></h1>
+    <p id="t-heroP">Every week a new destination, the community decides where, and one couple wins an unforgettable experience.</p>
   </div>
 
   <div class="perks">
-    <div class="perk">✈️ <b>3 לילות</b> לשניים</div>
-    <div class="perk">🗳️ אתה בוחר את <b>היעד</b></div>
-    <div class="perk">⭐ ניקוד על <b>פעילות</b></div>
-    <div class="perk">🔒 <b>חינמי</b> להצטרף</div>
+    <div class="perk">✈️ <b id="t-p1">3 nights</b> for two</div>
+    <div class="perk">🗳️ <span id="t-p2">You choose the destination</span></div>
+    <div class="perk">⭐ <span id="t-p3">Earn points for activity</span></div>
+    <div class="perk">🔒 <b id="t-p4">Free</b> to join</div>
   </div>
 
   <div class="fcard">
     <div class="fcard-line"></div>
     <div class="fcard-body">
-      <div class="fcard-title">הרשמה לקהילה</div>
-      <div class="fcard-sub">פחות מדקה · ללא כרטיס אשראי · הצטרף עכשיו</div>
-
+      <div class="fcard-title" id="t-formTitle">Join the Community</div>
+      <div class="fcard-sub" id="t-formSub">Less than a minute · No credit card · Join now</div>
       <div class="steps">
         <div class="step active" id="st1"></div>
         <div class="step" id="st2"></div>
         <div class="step" id="st3"></div>
       </div>
 
-      <!-- SCREEN 1 — פרטים בסיסיים -->
+      <!-- S1: Basic Info -->
       <div class="screen active" id="s1">
         <div class="g2">
-          <div class="fg">
-            <label>שם פרטי</label>
-            <div class="fi-wrap">
-              <input class="fi" id="fname" placeholder="ליאור" type="text" autocomplete="given-name">
-              <span class="fi-icon">👤</span>
-            </div>
-            <div class="err-msg" id="e-fname">נא להזין שם</div>
+          <div class="fg"><label id="t-lFname">First Name</label>
+            <div class="fi-wrap"><input class="fi" id="fname" placeholder="John" type="text"><span class="fi-icon">👤</span></div>
+            <div class="err-msg" id="e-fname">Please enter your name</div>
           </div>
-          <div class="fg">
-            <label>שם משפחה</label>
-            <div class="fi-wrap">
-              <input class="fi" id="lname" placeholder="כהן" type="text" autocomplete="family-name">
-            </div>
+          <div class="fg"><label id="t-lLname">Last Name</label>
+            <div class="fi-wrap"><input class="fi" id="lname" placeholder="Smith" type="text"></div>
           </div>
         </div>
-        <div class="fg">
-          <label>אימייל</label>
-          <div class="fi-wrap">
-            <input class="fi" id="email" placeholder="you@email.com" type="email" autocomplete="email">
-            <span class="fi-icon">✉️</span>
-          </div>
-          <div class="err-msg" id="e-email">נא להזין אימייל תקין</div>
+        <div class="fg"><label id="t-lEmail">Email</label>
+          <div class="fi-wrap"><input class="fi" id="email" placeholder="you@email.com" type="email"><span class="fi-icon">✉️</span></div>
+          <div class="err-msg" id="e-email">Please enter a valid email</div>
         </div>
-        <div class="fg">
-          <label>טלפון (לקבלת עדכונים)</label>
+        <div class="fg"><label id="t-lPhone">Phone (for updates)</label>
           <div class="phone-row">
-            <input class="country-code" id="ccode" value="+972" maxlength="5">
-            <div class="fi-wrap" style="flex:1">
-              <input class="fi" id="phone" placeholder="05X-XXXXXXX" type="tel" autocomplete="tel">
-              <span class="fi-icon">📱</span>
-            </div>
+            <input class="ccode" id="ccode" value="+1" maxlength="5">
+            <div class="fi-wrap" style="flex:1"><input class="fi" id="phone" placeholder="XXX-XXX-XXXX" type="tel"><span class="fi-icon">📱</span></div>
           </div>
-          <div class="err-msg" id="e-phone">נא להזין מספר טלפון</div>
+          <div class="err-msg" id="e-phone">Please enter a valid phone number</div>
         </div>
-        <button class="btn-main" onclick="goS2()">המשך →</button>
+        <button class="btn-main" id="t-btnNext" onclick="goS2()">Continue →</button>
       </div>
 
-      <!-- SCREEN 2 — פרטים נוספים -->
+      <!-- S2: Details -->
       <div class="screen" id="s2">
-        <div class="fg">
-          <label>מדינה</label>
+        <div class="fg"><label id="t-lCountry">Country</label>
           <div class="fi-wrap">
             <select class="fi" id="country" style="appearance:none;cursor:pointer">
-              <option value="">בחר מדינה...</option>
-              <option value="IL">🇮🇱 ישראל</option>
-              <option value="US">🇺🇸 ארצות הברית</option>
-              <option value="GB">🇬🇧 בריטניה</option>
-              <option value="DE">🇩🇪 גרמניה</option>
-              <option value="FR">🇫🇷 צרפת</option>
-              <option value="AU">🇦🇺 אוסטרליה</option>
-              <option value="CA">🇨🇦 קנדה</option>
-              <option value="BR">🇧🇷 ברזיל</option>
-              <option value="IN">🇮🇳 הודו</option>
-              <option value="OTHER">🌍 אחר</option>
+              <option value="">Select country...</option>
+              <option value="US">🇺🇸 United States</option>
+              <option value="GB">🇬🇧 United Kingdom</option>
+              <option value="DE">🇩🇪 Germany</option>
+              <option value="FR">🇫🇷 France</option>
+              <option value="ES">🇪🇸 Spain</option>
+              <option value="IT">🇮🇹 Italy</option>
+              <option value="NL">🇳🇱 Netherlands</option>
+              <option value="SE">🇸🇪 Sweden</option>
+              <option value="CH">🇨🇭 Switzerland</option>
+              <option value="PT">🇵🇹 Portugal</option>
+              <option value="BR">🇧🇷 Brazil</option>
+              <option value="CA">🇨🇦 Canada</option>
+              <option value="AU">🇦🇺 Australia</option>
+              <option value="IL">🇮🇱 Israel</option>
+              <option value="OTHER">🌍 Other</option>
             </select>
             <span class="fi-icon">🌍</span>
           </div>
         </div>
-        <div class="fg">
-          <label>קוד הפניה (אופציונלי)</label>
-          <div class="fi-wrap">
-            <input class="fi" id="refcode" placeholder="SRN-XXXXXX" type="text" style="text-transform:uppercase">
-            <span class="fi-icon">🎁</span>
-          </div>
+        <div class="fg"><label id="t-lRef">Referral Code (optional)</label>
+          <div class="fi-wrap"><input class="fi" id="refcode" placeholder="SRN-XXXXXX" type="text" style="text-transform:uppercase"><span class="fi-icon">🎁</span></div>
         </div>
-        <div id="ref-bonus" style="display:none" class="ref-box">
-          <span class="ref-ico">🎁</span>
-          <div class="ref-txt">קוד הפניה תקין! <b>+50 נקודות בונוס</b> יתווספו לחשבונך</div>
+        <div class="ref-box" id="ref-bonus">
+          <span>🎁</span>
+          <div style="font-size:.74rem;color:var(--c2)" id="t-refBonus">Valid referral code! <b>+50 bonus points</b> will be added to your account.</div>
         </div>
-
-        <div class="check-row" onclick="toggleCheck('tc')">
-          <div class="check-box" id="tc-box"></div>
-          <div class="check-lbl">קראתי ואני מסכים ל<a href="#" onclick="return false">תנאי השימוש</a> ול<a href="#" onclick="return false">מדיניות הפרטיות</a></div>
+        <div class="check-row" onclick="toggleChk('tc')">
+          <div class="chk" id="tc-box"></div>
+          <div class="chk-lbl" id="t-lTc">I agree to the <a href="#" onclick="return false">Terms of Service</a> and <a href="#" onclick="return false">Privacy Policy</a></div>
         </div>
-        <div class="check-row" onclick="toggleCheck('mkt')">
-          <div class="check-box checked" id="mkt-box">✓</div>
-          <div class="check-lbl" style="color:var(--c3)">אני מסכים לקבל עדכונים ומבצעים מ-Seranova (ניתן לבטל בכל עת)</div>
+        <div class="check-row" onclick="toggleChk('mkt')">
+          <div class="chk on" id="mkt-box">✓</div>
+          <div class="chk-lbl" id="t-lMkt" style="color:var(--c3)">I agree to receive updates and offers from Seranova (unsubscribe anytime)</div>
         </div>
-
-        <button class="btn-main" id="reg-btn" onclick="doRegister()">הצטרף עכשיו 🚀</button>
-        <button class="btn-ghost" onclick="goS1()">← חזור</button>
+        <button class="btn-main" id="reg-btn" onclick="doRegister()">Join Now 🚀</button>
+        <button class="btn-ghost" id="t-btnBack" onclick="goS1()">← Back</button>
       </div>
 
-      <!-- SCREEN 3 — הצלחה -->
+      <!-- S3: Success -->
       <div class="screen" id="s3">
-        <div class="success-wrap">
-          <div class="success-ico">🎉</div>
-          <div class="success-title">ברוך הבא לקהילה!</div>
-          <div class="success-sub">נרשמת בהצלחה ל-Seranova.<br>בדוק את האימייל שלך לאישור ופרטים נוספים.</div>
-          <div style="font-size:.72rem;color:var(--c3);margin-bottom:.3rem">קוד ההפניה שלך — שתף עם חברים!</div>
-          <div class="ref-code-box" id="user-ref-code" onclick="copyRef()" title="לחץ להעתקה">SRN-XXXXXX</div>
-          <div style="font-size:.65rem;color:var(--c3);margin-bottom:.9rem">כל חבר שמצטרף → <b style="color:var(--gold)">+75 נקודות</b> לך ו-<b style="color:var(--gold)">+50</b> לו</div>
-
-          <div class="pts-preview">
-            <div class="pt-item"><div class="pt-num">0</div><div class="pt-lbl">נקודות</div></div>
-            <div class="pt-item"><div class="pt-num" style="color:var(--sky)">Explorer</div><div class="pt-lbl">דרגה</div></div>
-            <div class="pt-item"><div class="pt-num" style="color:var(--green)">0</div><div class="pt-lbl">הפניות</div></div>
-          </div>
-
-          <div style="font-size:.72rem;color:var(--c3);margin-bottom:.45rem">שתף עם חברים</div>
-          <div class="social-btns">
-            <button class="s-btn s-wa" onclick="shareWA()">📱 WhatsApp</button>
-            <button class="s-btn s-ig" onclick="shareIG()">📸 Instagram</button>
-          </div>
+        <div class="suc-ico">🎉</div>
+        <div class="suc-title" id="t-sucTitle">Welcome to the community!</div>
+        <div class="suc-sub" id="t-sucSub">You've successfully joined Seranova.<br>Check your email for confirmation and next steps.</div>
+        <div style="font-size:.72rem;color:var(--c3);margin-bottom:.3rem;text-align:center" id="t-refLbl">Your referral code — share with friends!</div>
+        <div class="ref-code-box" id="user-ref-code" onclick="copyRef()">SRN-XXXXXX</div>
+        <div style="font-size:.65rem;color:var(--c3);margin-bottom:.9rem;text-align:center" id="t-refSub">Each friend who joins → <b style="color:var(--gold)">+75 points</b> for you & <b style="color:var(--gold)">+50</b> for them</div>
+        <div class="pts-grid">
+          <div class="pt-item"><div class="pt-num" id="suc-pts">0</div><div class="pt-lbl" id="t-pts">Points</div></div>
+          <div class="pt-item"><div class="pt-num" style="color:var(--sky)">Explorer</div><div class="pt-lbl" id="t-tier">Tier</div></div>
+          <div class="pt-item"><div class="pt-num" style="color:var(--green)">0</div><div class="pt-lbl" id="t-refs">Referrals</div></div>
+        </div>
+        <div style="font-size:.72rem;color:var(--c3);margin:.6rem 0 .4rem;text-align:center" id="t-share">Share with friends</div>
+        <div class="soc-btns">
+          <button class="s-btn s-wa" onclick="shareWA()">📱 WhatsApp</button>
+          <button class="s-btn s-ig" onclick="shareIG()">📸 Instagram</button>
         </div>
       </div>
     </div>
 
     <div class="fcard-foot">
-      <div class="already">כבר חבר? <a href="/index.html">התחבר לדשבורד</a></div>
+      <div class="already" id="t-already">Already a member? <a href="/index.html">Sign in to dashboard</a></div>
       <div class="secure">
-        <div class="sec-item">🔒 מוצפן SSL</div>
-        <div class="sec-item">🛡 פרטיות מוגנת</div>
-        <div class="sec-item">✉️ ללא ספאם</div>
+        <div class="sec-item">🔒 SSL Encrypted</div>
+        <div class="sec-item">🛡 Privacy Protected</div>
+        <div class="sec-item">✉️ No Spam</div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-let checks = { tc: false, mkt: true };
-let currentRef = '';
+const LANGS = {
+  en:{flag:'🇬🇧',name:'English',dir:'ltr',phoneCode:'+1',phonePh:'XXX-XXX-XXXX',
+    heroH:'Travel smarter with a <span>community</span>',
+    heroP:'Every week a new destination, the community decides where, and one couple wins an unforgettable experience.',
+    formTitle:'Join the Community',formSub:'Less than a minute · No credit card · Join now',
+    lFname:'First Name',lLname:'Last Name',lEmail:'Email',lPhone:'Phone (for updates)',lCountry:'Country',lRef:'Referral Code (optional)',
+    lTc:'I agree to the <a href="#" onclick="return false">Terms of Service</a> and <a href="#" onclick="return false">Privacy Policy</a>',
+    lMkt:'I agree to receive updates and offers from Seranova (unsubscribe anytime)',
+    btnNext:'Continue →',btnJoin:'Join Now 🚀',btnBack:'← Back',
+    eFname:'Please enter your name',eEmail:'Please enter a valid email',ePhone:'Please enter a valid phone number',
+    refBonus:'Valid referral code! <b>+50 bonus points</b> will be added to your account.',
+    sucTitle:'Welcome to the community!',sucSub:"You've successfully joined Seranova.<br>Check your email for confirmation and next steps.",
+    refLbl:'Your referral code — share with friends!',
+    refSub:'Each friend who joins → <b style="color:var(--gold)">+75 points</b> for you & <b style="color:var(--gold)">+50</b> for them',
+    pts:'Points',tier:'Tier',refs:'Referrals',share:'Share with friends',
+    already:'Already a member? <a href="/index.html">Sign in to dashboard</a>',
+    tcErr:'Please accept the Terms of Service',copied:'✓ Copied!',
+    wa:'I just joined Seranova — the AI travel community! ✈️\nJoin with my code: {code}\nhttps://seranova.world/join',
+    ig:'Code copied! Open Instagram and share in your story 📸'},
 
-function toggleCheck(id) {
-  checks[id] = !checks[id];
-  const box = document.getElementById(id + '-box');
-  if (checks[id]) { box.classList.add('checked'); box.textContent = '✓'; }
-  else { box.classList.remove('checked'); box.textContent = ''; }
+  he:{flag:'🇮🇱',name:'עברית',dir:'rtl',phoneCode:'+972',phonePh:'05X-XXXXXXX',
+    heroH:'טיילו חכם יותר עם <span>קהילה</span>',
+    heroP:'כל שבוע יעד חדש, הקהילה מחליטה לאן, וזוג אחד זוכה בחוויה בלתי נשכחת.',
+    formTitle:'הצטרף לקהילה',formSub:'פחות מדקה · ללא כרטיס אשראי · הצטרף עכשיו',
+    lFname:'שם פרטי',lLname:'שם משפחה',lEmail:'אימייל',lPhone:'טלפון (לעדכונים)',lCountry:'מדינה',lRef:'קוד הפניה (אופציונלי)',
+    lTc:'קראתי ואני מסכים ל<a href="#" onclick="return false">תנאי השימוש</a> ול<a href="#" onclick="return false">מדיניות הפרטיות</a>',
+    lMkt:'אני מסכים לקבל עדכונים ומבצעים מ-Seranova',
+    btnNext:'המשך →',btnJoin:'הצטרף עכשיו 🚀',btnBack:'← חזור',
+    eFname:'נא להזין שם',eEmail:'נא להזין אימייל תקין',ePhone:'נא להזין מספר טלפון',
+    refBonus:'קוד הפניה תקין! <b>+50 נקודות בונוס</b> יתווספו לחשבונך.',
+    sucTitle:'ברוך הבא לקהילה!',sucSub:'נרשמת בהצלחה ל-Seranova.<br>בדוק את האימייל שלך לאישור ופרטים נוספים.',
+    refLbl:'קוד ההפניה שלך — שתף עם חברים!',
+    refSub:'כל חבר שמצטרף → <b style="color:var(--gold)">+75 נקודות</b> לך ו-<b style="color:var(--gold)">+50</b> לו',
+    pts:'נקודות',tier:'דרגה',refs:'הפניות',share:'שתף עם חברים',
+    already:'כבר חבר? <a href="/index.html">התחבר לדשבורד</a>',
+    tcErr:'יש לאשר את תנאי השימוש',copied:'✓ הועתק!',
+    wa:'הצטרפתי ל-Seranova — קהילת נסיעות AI! ✈️\nהצטרף עם הקוד שלי: {code}\nhttps://seranova.world/join',
+    ig:'הקוד הועתק! פתח אינסטגרם ושתף בסטורי 📸'},
+
+  fr:{flag:'🇫🇷',name:'Français',dir:'ltr',phoneCode:'+33',phonePh:'XX XX XX XX XX',
+    heroH:'Voyagez plus intelligemment avec une <span>communauté</span>',
+    heroP:'Chaque semaine une nouvelle destination, la communauté décide où, et un couple gagne une expérience inoubliable.',
+    formTitle:'Rejoindre la communauté',formSub:'Moins d\'une minute · Sans carte bancaire · Rejoignez maintenant',
+    lFname:'Prénom',lLname:'Nom',lEmail:'Email',lPhone:'Téléphone (pour les mises à jour)',lCountry:'Pays',lRef:'Code de parrainage (optionnel)',
+    lTc:'J\'accepte les <a href="#" onclick="return false">CGU</a> et la <a href="#" onclick="return false">Politique de confidentialité</a>',
+    lMkt:'J\'accepte de recevoir des mises à jour et offres de Seranova',
+    btnNext:'Continuer →',btnJoin:'Rejoindre maintenant 🚀',btnBack:'← Retour',
+    eFname:'Veuillez entrer votre prénom',eEmail:'Email invalide',ePhone:'Numéro invalide',
+    refBonus:'Code valide! <b>+50 points bonus</b> seront ajoutés à votre compte.',
+    sucTitle:'Bienvenue dans la communauté!',sucSub:'Vous avez rejoint Seranova.<br>Vérifiez votre email pour la confirmation.',
+    refLbl:'Votre code de parrainage — partagez!',
+    refSub:'Chaque ami → <b style="color:var(--gold)">+75 points</b> pour vous & <b style="color:var(--gold)">+50</b> pour eux',
+    pts:'Points',tier:'Niveau',refs:'Parrainages',share:'Partager avec des amis',
+    already:'Déjà membre? <a href="/index.html">Se connecter</a>',
+    tcErr:'Veuillez accepter les conditions',copied:'✓ Copié!',
+    wa:'Je viens de rejoindre Seranova! ✈️\nRejoignez avec mon code: {code}\nhttps://seranova.world/join',
+    ig:'Code copié! Partagez dans votre story Instagram 📸'},
+
+  de:{flag:'🇩🇪',name:'Deutsch',dir:'ltr',phoneCode:'+49',phonePh:'XXX XXXXXXXX',
+    heroH:'Reisen Sie klüger mit einer <span>Community</span>',
+    heroP:'Jede Woche ein neues Reiseziel, die Community entscheidet wohin, und ein Paar gewinnt ein unvergessliches Erlebnis.',
+    formTitle:'Der Community beitreten',formSub:'Weniger als eine Minute · Keine Kreditkarte · Jetzt beitreten',
+    lFname:'Vorname',lLname:'Nachname',lEmail:'E-Mail',lPhone:'Telefon (für Updates)',lCountry:'Land',lRef:'Empfehlungscode (optional)',
+    lTc:'Ich stimme den <a href="#" onclick="return false">Nutzungsbedingungen</a> und der <a href="#" onclick="return false">Datenschutzrichtlinie</a> zu',
+    lMkt:'Ich stimme zu, Updates und Angebote von Seranova zu erhalten',
+    btnNext:'Weiter →',btnJoin:'Jetzt beitreten 🚀',btnBack:'← Zurück',
+    eFname:'Bitte Vornamen eingeben',eEmail:'Ungültige E-Mail',ePhone:'Ungültige Telefonnummer',
+    refBonus:'Gültiger Code! <b>+50 Bonuspunkte</b> werden hinzugefügt.',
+    sucTitle:'Willkommen in der Community!',sucSub:'Sie sind Seranova beigetreten.<br>Überprüfen Sie Ihre E-Mail zur Bestätigung.',
+    refLbl:'Ihr Empfehlungscode — teilen Sie ihn!',
+    refSub:'Jeder Freund → <b style="color:var(--gold)">+75 Punkte</b> für Sie & <b style="color:var(--gold)">+50</b> für ihn',
+    pts:'Punkte',tier:'Stufe',refs:'Empfehlungen',share:'Mit Freunden teilen',
+    already:'Bereits Mitglied? <a href="/index.html">Anmelden</a>',
+    tcErr:'Bitte akzeptieren Sie die Bedingungen',copied:'✓ Kopiert!',
+    wa:'Ich bin Seranova beigetreten! ✈️\nTritt mit meinem Code bei: {code}\nhttps://seranova.world/join',
+    ig:'Code kopiert! Teilen Sie in Ihrer Instagram Story 📸'},
+
+  es:{flag:'🇪🇸',name:'Español',dir:'ltr',phoneCode:'+34',phonePh:'XXX XXX XXXX',
+    heroH:'Viaja más inteligente con una <span>comunidad</span>',
+    heroP:'Cada semana un nuevo destino, la comunidad decide a dónde, y una pareja gana una experiencia inolvidable.',
+    formTitle:'Únete a la comunidad',formSub:'Menos de un minuto · Sin tarjeta · Únete ahora',
+    lFname:'Nombre',lLname:'Apellido',lEmail:'Correo electrónico',lPhone:'Teléfono (para actualizaciones)',lCountry:'País',lRef:'Código de referido (opcional)',
+    lTc:'Acepto los <a href="#" onclick="return false">Términos</a> y la <a href="#" onclick="return false">Política de Privacidad</a>',
+    lMkt:'Acepto recibir actualizaciones y ofertas de Seranova',
+    btnNext:'Continuar →',btnJoin:'Únete ahora 🚀',btnBack:'← Volver',
+    eFname:'Por favor ingresa tu nombre',eEmail:'Email inválido',ePhone:'Teléfono inválido',
+    refBonus:'¡Código válido! <b>+50 puntos de bonificación</b> añadidos.',
+    sucTitle:'¡Bienvenido a la comunidad!',sucSub:'Te has unido a Seranova.<br>Revisa tu email para la confirmación.',
+    refLbl:'Tu código de referido — ¡comparte!',
+    refSub:'Cada amigo → <b style="color:var(--gold)">+75 puntos</b> para ti & <b style="color:var(--gold)">+50</b> para ellos',
+    pts:'Puntos',tier:'Nivel',refs:'Referidos',share:'Compartir con amigos',
+    already:'¿Ya eres miembro? <a href="/index.html">Iniciar sesión</a>',
+    tcErr:'Por favor acepta los términos',copied:'✓ ¡Copiado!',
+    wa:'¡Me uní a Seranova! ✈️\nÚnete con mi código: {code}\nhttps://seranova.world/join',
+    ig:'¡Código copiado! Comparte en tu historia de Instagram 📸'},
+
+  pt:{flag:'🇧🇷',name:'Português',dir:'ltr',phoneCode:'+55',phonePh:'XX XXXXX-XXXX',
+    heroH:'Viaje mais inteligente com uma <span>comunidade</span>',
+    heroP:'Toda semana um novo destino, a comunidade decide para onde, e um casal ganha uma experiência inesquecível.',
+    formTitle:'Junte-se à comunidade',formSub:'Menos de um minuto · Sem cartão · Junte-se agora',
+    lFname:'Nome',lLname:'Sobrenome',lEmail:'E-mail',lPhone:'Telefone (para atualizações)',lCountry:'País',lRef:'Código de indicação (opcional)',
+    lTc:'Concordo com os <a href="#" onclick="return false">Termos</a> e a <a href="#" onclick="return false">Política de Privacidade</a>',
+    lMkt:'Concordo em receber atualizações e ofertas da Seranova',
+    btnNext:'Continuar →',btnJoin:'Junte-se agora 🚀',btnBack:'← Voltar',
+    eFname:'Por favor insira seu nome',eEmail:'Email inválido',ePhone:'Telefone inválido',
+    refBonus:'Código válido! <b>+50 pontos de bônus</b> adicionados.',
+    sucTitle:'Bem-vindo à comunidade!',sucSub:'Você se juntou à Seranova.<br>Verifique seu email para confirmação.',
+    refLbl:'Seu código de indicação — compartilhe!',
+    refSub:'Cada amigo → <b style="color:var(--gold)">+75 pontos</b> para você & <b style="color:var(--gold)">+50</b> para eles',
+    pts:'Pontos',tier:'Nível',refs:'Indicações',share:'Compartilhar com amigos',
+    already:'Já é membro? <a href="/index.html">Entrar</a>',
+    tcErr:'Por favor aceite os termos',copied:'✓ Copiado!',
+    wa:'Acabei de entrar na Seranova! ✈️\nEntre com meu código: {code}\nhttps://seranova.world/join',
+    ig:'Código copiado! Compartilhe no seu story do Instagram 📸'}
+};
+
+let lang = 'en';
+let checks = {tc:false, mkt:true};
+let myRef = '';
+
+function g(id){return document.getElementById(id)}
+function v(id){return g(id).value.trim()}
+
+function toggleDrop(){
+  g('lang-drop').classList.toggle('open');
 }
-
-function v(id) { return document.getElementById(id).value.trim(); }
-
-function goS1() {
-  document.getElementById('s2').classList.remove('active');
-  document.getElementById('s1').classList.add('active');
-  document.getElementById('st1').className = 'step active';
-  document.getElementById('st2').className = 'step';
-}
-
-function goS2() {
-  let ok = true;
-  const fname = v('fname'), email = v('email'), phone = v('phone');
-
-  document.getElementById('e-fname').classList.remove('show');
-  document.getElementById('e-email').classList.remove('show');
-  document.getElementById('e-phone').classList.remove('show');
-
-  if (!fname) { document.getElementById('e-fname').classList.add('show'); document.getElementById('fname').classList.add('err'); ok = false; }
-  else document.getElementById('fname').classList.remove('err');
-
-  if (!email || !email.includes('@')) { document.getElementById('e-email').classList.add('show'); document.getElementById('email').classList.add('err'); ok = false; }
-  else document.getElementById('email').classList.remove('err');
-
-  if (!phone || phone.length < 9) { document.getElementById('e-phone').classList.add('show'); document.getElementById('phone').classList.add('err'); ok = false; }
-  else document.getElementById('phone').classList.remove('err');
-
-  if (!ok) return;
-
-  document.getElementById('s1').classList.remove('active');
-  document.getElementById('s2').classList.add('active');
-  document.getElementById('st1').className = 'step done';
-  document.getElementById('st2').className = 'step active';
-}
-
-// בדיקת קוד הפניה
-document.getElementById('refcode')?.addEventListener('input', function() {
-  const val = this.value.toUpperCase();
-  this.value = val;
-  const bonus = document.getElementById('ref-bonus');
-  if (val.length >= 8) { bonus.style.display = 'flex'; }
-  else { bonus.style.display = 'none'; }
+document.addEventListener('click', e=>{
+  if(!e.target.closest('.lang-wrap')) g('lang-drop').classList.remove('open');
 });
 
-async function doRegister() {
-  if (!checks.tc) { alert('יש לאשר את תנאי השימוש'); return; }
+function setLang(l){
+  lang = l;
+  const t = LANGS[l];
+  document.documentElement.lang = l;
+  document.documentElement.dir = t.dir;
+  g('l-flag').textContent = t.flag;
+  g('l-name').textContent = t.name;
+  g('lang-drop').classList.remove('open');
+  document.querySelectorAll('.lang-opt').forEach(o=>o.classList.remove('sel'));
+  document.querySelector(`.lang-opt[onclick="setLang('${l}')"]`)?.classList.add('sel');
 
-  const btn = document.getElementById('reg-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spin"></span> רושם...';
+  const ids = {
+    't-heroH':'heroH','t-heroP':'heroP','t-formTitle':'formTitle','t-formSub':'formSub',
+    't-lFname':'lFname','t-lLname':'lLname','t-lEmail':'lEmail','t-lPhone':'lPhone',
+    't-lCountry':'lCountry','t-lRef':'lRef','t-lTc':'lTc','t-lMkt':'lMkt',
+    't-btnNext':'btnNext','reg-btn':'btnJoin','t-btnBack':'btnBack',
+    'e-fname':'eFname','e-email':'eEmail','e-phone':'ePhone',
+    't-refBonus':'refBonus','t-sucTitle':'sucTitle','t-sucSub':'sucSub',
+    't-refLbl':'refLbl','t-refSub':'refSub','t-pts':'pts','t-tier':'tier',
+    't-refs':'refs','t-share':'share','t-already':'already'
+  };
+  Object.entries(ids).forEach(([id,key])=>{
+    const el = g(id);
+    if(el) el.innerHTML = t[key];
+  });
+  g('phone').placeholder = t.phonePh;
+  g('ccode').value = t.phoneCode;
+}
 
-  const memberData = {
-    name: v('fname') + ' ' + v('lname'),
+function goS1(){
+  g('s2').classList.remove('active');
+  g('s1').classList.add('active');
+  g('st1').className='step active';
+  g('st2').className='step';
+}
+
+function goS2(){
+  const t = LANGS[lang];
+  let ok=true;
+  ['fname','email','phone'].forEach(id=>{
+    g('e-'+id).classList.remove('show');
+    g(id).classList.remove('err');
+  });
+  if(!v('fname')){g('e-fname').classList.add('show');g('fname').classList.add('err');ok=false;}
+  if(!v('email')||!v('email').includes('@')){g('e-email').classList.add('show');g('email').classList.add('err');ok=false;}
+  if(!v('phone')||v('phone').length<7){g('e-phone').classList.add('show');g('phone').classList.add('err');ok=false;}
+  if(!ok)return;
+  g('s1').classList.remove('active');
+  g('s2').classList.add('active');
+  g('st1').className='step done';
+  g('st2').className='step active';
+}
+
+g('refcode').addEventListener('input',function(){
+  this.value=this.value.toUpperCase();
+  g('ref-bonus').style.display = this.value.length>=8?'flex':'none';
+});
+
+function toggleChk(id){
+  checks[id]=!checks[id];
+  const b=g(id+'-box');
+  b.classList.toggle('on',checks[id]);
+  b.textContent=checks[id]?'✓':'';
+}
+
+async function doRegister(){
+  const t=LANGS[lang];
+  if(!checks.tc){alert(t.tcErr);return;}
+  const btn=g('reg-btn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin"></span>';
+
+  const body={
+    name: v('fname')+' '+v('lname'),
     email: v('email'),
-    phone: v('ccode') + v('phone'),
-    country: document.getElementById('country').value || 'IL',
-    referred_by: v('refcode') || null,
-    marketing_consent: checks.mkt
+    phone: v('ccode')+v('phone'),
+    country: g('country').value||'OTHER',
+    referred_by: v('refcode')||null,
+    marketing_consent: checks.mkt,
+    language: lang
   };
 
-  try {
-    const res = await fetch('/.netlify/functions/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(memberData)
-    });
-
-    const data = await res.json();
-
-    if (data.success) {
-      currentRef = data.referral_code;
-      document.getElementById('user-ref-code').textContent = data.referral_code;
-
-      document.getElementById('s2').classList.remove('active');
-      document.getElementById('s3').classList.add('active');
-      document.getElementById('st2').className = 'step done';
-      document.getElementById('st3').className = 'step done';
+  try{
+    const r=await fetch('/.netlify/functions/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const d=await r.json();
+    if(d.success){
+      myRef=d.referral_code;
+      g('user-ref-code').textContent=d.referral_code;
+      if(d.points>0) g('suc-pts').textContent=d.points;
+      g('s2').classList.remove('active');
+      g('s3').classList.add('active');
+      g('st2').className='step done';
+      g('st3').className='step done';
     } else {
-      if (data.error === 'duplicate') {
-        alert('האימייל הזה כבר רשום! נסה להתחבר.');
-      } else {
-        alert('שגיאה: ' + (data.message || 'נסה שוב'));
-      }
-      btn.disabled = false;
-      btn.innerHTML = 'הצטרף עכשיו 🚀';
+      alert(d.error==='duplicate'?'This email is already registered!':(d.message||'Please try again'));
+      btn.disabled=false; btn.innerHTML=t.btnJoin;
     }
-  } catch(e) {
-    alert('שגיאת חיבור — נסה שוב');
-    btn.disabled = false;
-    btn.innerHTML = 'הצטרף עכשיו 🚀';
+  } catch(e){
+    alert('Connection error — please try again');
+    btn.disabled=false; btn.innerHTML=t.btnJoin;
   }
 }
 
-function copyRef() {
-  navigator.clipboard?.writeText(currentRef).then(() => {
-    const el = document.getElementById('user-ref-code');
-    const orig = el.textContent;
-    el.textContent = '✓ הועתק!';
-    setTimeout(() => el.textContent = orig, 2000);
+function copyRef(){
+  navigator.clipboard?.writeText(myRef).then(()=>{
+    const el=g('user-ref-code'), orig=el.textContent;
+    el.textContent=LANGS[lang].copied;
+    setTimeout(()=>el.textContent=orig,2000);
   });
 }
+function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent(LANGS[lang].wa.replace('{code}',myRef)));}
+function shareIG(){copyRef();alert(LANGS[lang].ig);}
 
-function shareWA() {
-  const msg = `הצטרפתי ל-Seranova — קהילת נסיעות AI! 🌍✈️\nהצטרף עכשיו עם הקוד שלי: ${currentRef}\nhttps://seranova.world/join`;
-  window.open('https://wa.me/?text=' + encodeURIComponent(msg));
-}
-
-function shareIG() {
-  copyRef();
-  alert('הקוד הועתק! עכשיו פתח אינסטגרם ושתף בסטורי 📸');
-}
-
-// סימון שדות תקינים בזמן אמת
-['fname','email','phone'].forEach(id => {
-  document.getElementById(id)?.addEventListener('input', function() {
-    if (this.value.trim()) { this.classList.remove('err'); this.classList.add('ok'); }
-    else { this.classList.remove('ok'); }
+['fname','email','phone'].forEach(id=>{
+  g(id)?.addEventListener('input',function(){
+    this.classList.toggle('ok',!!this.value.trim());
+    this.classList.remove('err');
   });
 });
+
+// Auto-detect browser language
+const bl=(navigator.language||'en').substring(0,2).toLowerCase();
+setLang(LANGS[bl]?bl:'en');
 </script>
 </body>
 </html>
