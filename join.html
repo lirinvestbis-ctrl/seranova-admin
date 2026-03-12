@@ -475,7 +475,7 @@ async function doRegister(){
   };
 
   try{
-    const r=await fetch('/.netlify/functions/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const r=await fetch('/functions/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
     const d=await r.json();
     if(d.success){
       myRef=d.referral_code;
