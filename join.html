@@ -8,7 +8,7 @@
 <style>
 :root{
   --ink:#07070e;--ink2:#0d0d1a;--ink3:#141422;
-  --cream:#f0ebe0;--c2:rgba(240,235,224,.65);--c3:rgba(240,235,224,.28);
+  --cream:#f0ebe0;--c2:rgba(240,235,224,.65);--c3:rgba(240,235,224,.45);
   --gold:#c8a84b;--gold2:rgba(200,168,75,.13);
   --green:#3db87a;--green2:rgba(61,184,122,.12);
   --coral:#e05040;--border:rgba(255,255,255,.07);--b2:rgba(255,255,255,.04);
@@ -40,11 +40,11 @@ body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;m
 .logo-name b{color:var(--gold)}
 .logo-sub{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--c3);margin-top:.3rem}
 .hero{text-align:center;margin:1.8rem 0 2rem;max-width:480px}
-.hero h1{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;line-height:1.3;margin-bottom:.7rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;line-height:1.3;margin-bottom:.7rem}
 .hero h1 span{color:var(--gold)}
-.hero p{font-size:.82rem;color:var(--c2);line-height:1.75}
+.hero p{font-size:.95rem;color:var(--cream);line-height:1.8}
 .perks{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
-.perk{display:flex;align-items:center;gap:.4rem;background:var(--ink2);border:1px solid var(--border);border-radius:100px;padding:.38rem .88rem;font-size:.72rem;color:var(--c2)}
+.perk{display:flex;align-items:center;gap:.4rem;background:var(--ink2);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:.42rem .95rem;font-size:.78rem;color:var(--cream)}
 .perk b{color:var(--gold)}
 .fcard{width:100%;max-width:440px;background:rgba(13,13,26,.9);border:1px solid var(--border);border-radius:22px;overflow:hidden;backdrop-filter:blur(24px);box-shadow:0 32px 80px rgba(0,0,0,.5)}
 .fcard-line{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
@@ -59,9 +59,9 @@ body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;m
 .screen.active{display:block;animation:fadeup .25s ease}
 @keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .fg{margin-bottom:.85rem}
-.fg label{display:block;font-size:.61rem;letter-spacing:.12em;text-transform:uppercase;color:var(--c3);margin-bottom:.3rem}
+.fg label{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--c2);margin-bottom:.4rem;font-weight:600}
 .fi-wrap{position:relative}
-.fi{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:.78rem 2.8rem .78rem .9rem;color:var(--cream);font-family:'DM Sans',sans-serif;font-size:.86rem;outline:none;transition:all .2s}
+.fi{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.85rem 2.8rem .85rem .9rem;color:var(--cream);font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;transition:all .2s}
 .fi::placeholder{color:rgba(240,235,224,.2)}
 .fi:focus{border-color:rgba(200,168,75,.5);background:rgba(200,168,75,.04)}
 .fi.ok{border-color:rgba(61,184,122,.4)}
@@ -79,7 +79,7 @@ body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;m
 .check-row{display:flex;align-items:flex-start;gap:.65rem;margin-bottom:.85rem;cursor:pointer}
 .chk{width:18px;height:18px;border-radius:5px;border:1px solid var(--border);background:rgba(255,255,255,.05);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s;margin-top:.1rem}
 .chk.on{background:var(--gold);border-color:var(--gold);color:var(--ink)}
-.chk-lbl{font-size:.73rem;color:var(--c2);line-height:1.6}
+.chk-lbl{font-size:.82rem;color:var(--cream);line-height:1.6}
 .chk-lbl a{color:var(--gold);text-decoration:none}
 .btn-main{width:100%;background:linear-gradient(135deg,var(--gold),#b8923c);color:var(--ink);border:none;padding:.9rem;border-radius:11px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:.5rem}
 .btn-main:hover{box-shadow:0 10px 32px rgba(200,168,75,.5);transform:translateY(-1px)}
@@ -90,7 +90,7 @@ body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;m
 @keyframes sp{to{transform:rotate(360deg)}}
 .suc-ico{width:72px;height:72px;border-radius:50%;background:var(--green2);border:2px solid rgba(61,184,122,.3);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1.2rem}
 .suc-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:.5rem;text-align:center}
-.suc-sub{font-size:.78rem;color:var(--c2);line-height:1.7;margin-bottom:1.3rem;text-align:center}
+.suc-sub{font-size:.88rem;color:var(--cream);line-height:1.7;margin-bottom:1.3rem;text-align:center}
 .ref-code-box{background:var(--ink3);border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;font-family:'DM Mono',monospace;font-size:1.1rem;letter-spacing:.15em;color:var(--gold);text-align:center;margin:.6rem 0 1rem;cursor:pointer;transition:all .2s}
 .ref-code-box:hover{border-color:rgba(200,168,75,.35)}
 .pts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0}
@@ -251,7 +251,7 @@ body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;m
     </div>
 
     <div class="fcard-foot">
-      <div class="already" id="t-already">Already a member? <a href="/index.html">Sign in to dashboard</a></div>
+      
       <div class="secure">
         <div class="sec-item">🔒 SSL Encrypted</div>
         <div class="sec-item">🛡 Privacy Protected</div>
@@ -277,7 +277,7 @@ const LANGS = {
     refLbl:'Your referral code — share with friends!',
     refSub:'Each friend who joins → <b style="color:var(--gold)">+75 points</b> for you & <b style="color:var(--gold)">+50</b> for them',
     pts:'Points',tier:'Tier',refs:'Referrals',share:'Share with friends',
-    already:'Already a member? <a href="/index.html">Sign in to dashboard</a>',
+    already:'',
     tcErr:'Please accept the Terms of Service',copied:'✓ Copied!',
     wa:'I just joined Seranova — the AI travel community! ✈️\nJoin with my code: {code}\nhttps://seranova.world/join',
     ig:'Code copied! Open Instagram and share in your story 📸'},
