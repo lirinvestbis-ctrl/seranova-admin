@@ -453,7 +453,7 @@ td{padding:.62rem .85rem;vertical-align:middle}
   </div>
 
   <div class="hint" id="l-hint"></div>
-  <div class="hint" style="margin-top:.4rem;opacity:.5">💡 Demo — email: <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d8b9bcb5b1b698bcaabdb9b5bcaab7a8f6afb7aab4bc">[email&#160;protected]</a></b> · pw: <b>Seranova2025!</b> · 2FA: <b>123456</b></div>
+
 </div>
 
 <!-- ══════════════════════════════════════
@@ -762,9 +762,23 @@ td{padding:.62rem .85rem;vertical-align:middle}
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ══════════════════════════
+// CONFIG — Supabase + Admin
+// ══════════════════════════
+const SUPABASE_URL = 'https://dpehpnotjzgzpwecfjsb.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRwZWhwbm90anpnenB3ZWNmanNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1NDE0MTIsImV4cCI6MjA1NzExNzQxMn0.Y7pPCvvqtHDXj8kfIDFU4bHs0P8L6dBBZF7ooPQ2Xeg';
+const ADMIN_SECRET = window.__ADMIN_SECRET__ || 'seranova-admin-2026';
+
+// ══════════════════════════
+// CONFIG — Supabase + Admin
+// ══════════════════════════
+const SUPABASE_URL = 'https://dpehpnotjzgzpwecfjsb.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRwZWhwbm90anpnenB3ZWNmanNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1NDE0MTIsImV4cCI6MjA1NzExNzQxMn0.Y7pPCvvqtHDXj8kfIDFU4bHs0P8L6dBBZF7ooPQ2Xeg';
+const getAdminToken = () => sessionStorage.getItem('srn_admin_token') || '';
+
+// ══════════════════════════
 // DATA
 // ══════════════════════════
-const ADMIN_EMAIL='admin@seranova.world', ADMIN_PW='Seranova2025!', DEMO_OTP='123456';
+// Credentials validated server-side via /functions/auth
 const SESSION_SECS=30*60;
 
 let fails=0, sessionLeft=SESSION_SECS, sessionIv=null, codeLeft=300, codeIv=null, lockLeft=600, lockIv=null;
@@ -839,32 +853,46 @@ function togglePw(){
   e.textContent=i.type==='password'?'👁':'🙈';
 }
 
-function doLogin(){
-  const email=document.getElementById('l-email').value.trim();
-  const pw=document.getElementById('l-pw').value;
-  const btn=document.getElementById('l-btn');
+let _preToken = null;
+
+async function doLogin(){
+  const email = document.getElementById('l-email').value.trim();
+  const pw = document.getElementById('l-pw').value;
+  const btn = document.getElementById('l-btn');
   document.getElementById('l-email-err').classList.remove('show');
   document.getElementById('l-pw-err').classList.remove('show');
   ['l-email','l-pw'].forEach(id=>document.getElementById(id).classList.remove('err','ok'));
   if(!email||!pw){setHint('⚠️ Please fill in all fields.');return;}
   btn.disabled=true;btn.innerHTML='<span class="spin"></span>Checking...';
-  setTimeout(()=>{
-    if(email!==ADMIN_EMAIL){
-      document.getElementById('l-email').classList.add('err');
-      document.getElementById('l-email-err').classList.add('show');
-      onFail(btn);return;
+  try {
+    const resp = await fetch('/functions/auth', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ email, password: pw, step: 'login' })
+    });
+    const data = await resp.json();
+    if(data.success && data.step === 'otp') {
+      _preToken = data.pre_token;
+      document.getElementById('l-email').classList.add('ok');
+      document.getElementById('l-pw').classList.add('ok');
+      btn.innerHTML='Continue →';btn.disabled=false;
+      start2faTimer();
+      setTimeout(()=>goLS('ls-2fa'),350);
+    } else {
+      if(data.field==='email'){
+        document.getElementById('l-email').classList.add('err');
+        document.getElementById('l-email-err').classList.add('show');
+      } else {
+        document.getElementById('l-pw').classList.add('err');
+        document.getElementById('l-pw-err').classList.add('show');
+      }
+      btn.innerHTML='Continue →';btn.disabled=false;
+      onFail(btn);
     }
-    if(pw!==ADMIN_PW){
-      document.getElementById('l-pw').classList.add('err');
-      document.getElementById('l-pw-err').classList.add('show');
-      onFail(btn);return;
-    }
-    document.getElementById('l-email').classList.add('ok');
-    document.getElementById('l-pw').classList.add('ok');
+  } catch(e) {
+    setHint('⚠️ Connection error. Try again.');
     btn.innerHTML='Continue →';btn.disabled=false;
-    start2faTimer();
-    setTimeout(()=>goLS('ls-2fa'),350);
-  },1000);
+  }
 }
 
 function onFail(btn){
@@ -891,17 +919,24 @@ function onKey(e,i){
   const digs=document.querySelectorAll('.digit');
   if(e.key==='Backspace'&&!digs[i].value&&i>0){digs[i-1].focus();digs[i-1].value='';digs[i-1].classList.remove('filled');}
 }
-function do2FA(){
-  const digs=document.querySelectorAll('.digit');
-  const code=Array.from(digs).map(d=>d.value).join('');
-  if(code.length<6)return;
-  const btn=document.getElementById('l-2fa-btn');
+async function do2FA(){
+  const digs = document.querySelectorAll('.digit');
+  const code = Array.from(digs).map(d=>d.value).join('');
+  if(code.length<6) return;
+  const btn = document.getElementById('l-2fa-btn');
   btn.disabled=true;btn.innerHTML='<span class="spin"></span>Verifying...';
-  setTimeout(()=>{
-    if(code===DEMO_OTP){
+  try {
+    const resp = await fetch('/functions/auth', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ otp: code, pre_token: _preToken, step: 'otp' })
+    });
+    const data = await resp.json();
+    if(data.success && data.token) {
       clearInterval(codeIv);
+      sessionStorage.setItem('srn_admin_token', data.token);
       enterDash();
-    }else{
+    } else {
       digs.forEach(d=>{d.classList.add('shake');d.classList.remove('filled');d.value='';});
       document.getElementById('l-code-err').classList.add('show');
       setTimeout(()=>digs.forEach(d=>d.classList.remove('shake')),400);
@@ -909,7 +944,10 @@ function do2FA(){
       btn.innerHTML='Verify & Enter Dashboard →';btn.disabled=false;
       onFail({innerHTML:'',disabled:false});
     }
-  },900);
+  } catch(e) {
+    setHint('⚠️ Connection error.');
+    btn.innerHTML='Verify & Enter Dashboard →';btn.disabled=false;
+  }
 }
 function start2faTimer(){
   clearInterval(codeIv);codeLeft=300;
@@ -934,7 +972,7 @@ function startLockTimer(){
 }
 function tryRecovery(){
   const c=prompt('Enter your 8-character recovery code:');
-  if(c==='DD-ADMIN1'){clearInterval(lockIv);fails=0;goLS('ls-login');setHint('✓ Unlocked via recovery code.');}
+  setHint('✓ Use the reset link sent to your admin email.');
   else alert('Invalid recovery code.');
 }
 function doReset(){
@@ -1002,6 +1040,7 @@ function goV(id,el){
   document.getElementById('tb-title').textContent=viewTitles[id]||id;
   document.getElementById('tb-sub').textContent=viewSubs[id]||'';
   if(id==='agents'){renderAgents();renderLog();}
+  if(id==='draw'){loadDrawEntries();}
 }
 
 function initDash(){
@@ -1166,18 +1205,67 @@ function startCountdown(){
   setInterval(tick,1000);tick();
 }
 
-// DRAW
-function runDraw(){
+// DRAW — Real weighted draw via API
+async function runDraw(){
+  const destination = prompt('Enter this week\'s destination (e.g. Tokyo, Japan):');
+  if(!destination) return;
+
+  if(!confirm(`Run draw for "${destination}"?\n\nThis will:\n• Select a weighted random winner\n• Reset ALL members points to 0\n• Send WhatsApp to winner\n\nThis cannot be undone!`)) return;
+
   toast('🎲 Running weighted draw...');
-  setTimeout(()=>{
-    const winners=['Sarah K. 🇮🇱','Marcus T. 🇬🇧','Yuki N. 🇯🇵','Leila A. 🇫🇷'];
-    const w=winners[Math.floor(Math.random()*winners.length)];
-    const entry='#'+Math.floor(Math.random()*3241+1);
-    document.getElementById('dr-name').textContent='🏆 '+w;
-    document.getElementById('dr-entry').textContent='Entry '+entry+' · Cryptographically verified';
-    document.getElementById('draw-result').classList.add('show');
-    toast('🏆 Winner: '+w);
-  },1800);
+  const btn = document.querySelectorAll('[onclick="runDraw()"]');
+  btn.forEach(b=>{ b.disabled=true; b.textContent='⏳ Running...'; });
+
+  try {
+    const resp = await fetch('/functions/run-draw', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${getAdminToken()}`
+      },
+      body: JSON.stringify({ destination })
+    });
+    const data = await resp.json();
+
+    if(data.success){
+      const w = data.winner;
+      document.getElementById('dr-name').textContent = '🏆 ' + w.name;
+      document.getElementById('dr-entry').textContent =
+        `${w.points} pts · ${w.win_probability} odds · ${data.stats.total_participants} participants`;
+      document.getElementById('draw-result').classList.add('show');
+      toast(`🏆 Winner: ${w.name} — ${destination}!`);
+      // Refresh entries table
+      loadDrawEntries();
+    } else {
+      toast('⚠️ ' + (data.message || 'Draw failed'));
+    }
+  } catch(e) {
+    toast('❌ Draw error: ' + e.message);
+  } finally {
+    btn.forEach(b=>{ b.disabled=false; b.textContent='🎲 Run Draw'; });
+  }
+}
+
+// Load real draw entries from Supabase
+async function loadDrawEntries(){
+  try {
+    const resp = await fetch(
+      `${SUPABASE_URL}/rest/v1/members?is_active=eq.true&is_premium=eq.true&points=gt.0&order=points.desc&limit=20&select=name,points,country`,
+      { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }}
+    );
+    const data = await resp.json();
+    if(!Array.isArray(data) || data.length===0){
+      document.getElementById('draw-entries').innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--c3);padding:1rem">No eligible entries yet</td></tr>';
+      return;
+    }
+    const tot = data.reduce((s,m)=>s+(m.points||0),0);
+    document.getElementById('draw-entries').innerHTML = data.map((m,i)=>`<tr>
+      <td style="color:var(--c3);font-size:.68rem">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</td>
+      <td><div style="font-weight:500">${m.name}</div><div style="font-size:.62rem;color:var(--c3)">${m.country||''}</div></td>
+      <td style="font-family:'DM Mono',monospace;color:var(--gold)">${(m.points||0).toLocaleString()}</td>
+      <td style="font-family:'DM Mono',monospace;color:var(--green)">${(((m.points||0)/tot)*100).toFixed(1)}%</td>
+    </tr>`).join('');
+  } catch(e) { console.error('loadDrawEntries:', e); }
 }
 
 function approveWeek(){
