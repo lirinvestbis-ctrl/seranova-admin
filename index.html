@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seranova — Travel, Refined by Intelligence</title>
+<meta name="description" content="Every week, our AI sends one couple on a 3-night trip anywhere in the world. Join for $2.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#c8a040;--gold2:#e8c060;--gold3:#8a6020;--black:#080810;--navy:#0d0d1a;--text:rgba(255,255,255,.85);--muted:rgba(255,255,255,.45);--border:rgba(200,160,64,.15);--card:rgba(255,255,255,.03)}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:'Montserrat',sans-serif;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:.35}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(8,8,16,.95),transparent);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-brand{font-family:'Playfair Display',serif;font-size:20px;letter-spacing:1px;color:#fff}
+.nav-brand span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{padding:10px 22px;background:linear-gradient(135deg,var(--gold),var(--gold3));color:#fff!important;border-radius:2px}
+@media(max-width:700px){.nav-links{display:none}}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 70%,rgba(180,130,50,.08),transparent 60%),radial-gradient(ellipse 60% 40% at 20% 20%,rgba(30,40,80,.4),transparent 50%),linear-gradient(180deg,#080810 0%,#0d0d20 50%,#080810 100%)}
+.stars{position:absolute;inset:0;overflow:hidden}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:var(--lo)}to{opacity:var(--hi)}}
+.hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.compass{width:110px;height:110px;margin-bottom:28px;animation:float 6s ease-in-out infinite;filter:drop-shadow(0 0 28px rgba(200,160,64,.35))}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero-brand{font-family:'Playfair Display',serif;font-size:clamp(44px,8vw,72px);font-weight:400;letter-spacing:4px;margin-bottom:8px;line-height:1}
+.hero-brand span{color:var(--gold)}
+.hero-sub{font-size:10px;letter-spacing:5px;color:var(--muted);text-transform:uppercase;margin-bottom:52px}
+.hero-line{width:1px;height:36px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);margin-bottom:40px}
+.hero-copy{max-width:520px;font-family:'Cormorant Garamond',serif;font-size:clamp(17px,3vw,22px);line-height:1.9;color:rgba(255,255,255,.65);font-style:italic;margin-bottom:14px}
+.hero-copy em{color:var(--gold2);font-style:normal}
+.hero-end{font-family:'Cormorant Garamond',serif;font-size:clamp(19px,3.5vw,26px);color:rgba(255,255,255,.9);font-style:italic;margin-bottom:52px}
+.badges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:40px}
+.badge{display:flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid rgba(200,160,64,.25);border-radius:100px;font-size:12px;color:var(--muted);background:rgba(200,160,64,.05)}
+.badge strong{color:var(--gold);font-weight:500}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.btn-gold{padding:16px 40px;background:linear-gradient(135deg,var(--gold2),var(--gold3));color:#fff;border:none;border-radius:2px;font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .3s,transform .3s;box-shadow:0 8px 32px rgba(200,160,64,.25)}
+.btn-gold:hover{opacity:.9;transform:translateY(-1px)}
+.btn-out{padding:16px 40px;background:transparent;color:var(--muted);border:1px solid rgba(200,160,64,.3);border-radius:2px;font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:all .3s}
+.btn-out:hover{border-color:var(--gold);color:var(--gold)}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2s ease-in-out infinite}
+@keyframes sp{0%,100%{opacity:.3}50%{opacity:1}}
+.scroll-text{font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+section{padding:100px 24px;position:relative}
+.eyebrow{font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:16px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,42px);font-weight:400;text-align:center;margin-bottom:64px;color:rgba(255,255,255,.9)}
+.how{background:linear-gradient(180deg,var(--black),var(--navy),var(--black))}
+.steps{display:flex;justify-content:center;max-width:900px;margin:0 auto;flex-wrap:wrap}
+.step{flex:1;min-width:200px;max-width:280px;padding:40px 28px;text-align:center;position:relative}
+.step::after{content:'';position:absolute;top:56px;right:-1px;width:1px;height:40px;background:linear-gradient(to bottom,transparent,var(--gold),transparent)}
+.step:last-child::after{display:none}
+.step-ico{font-size:28px;margin-bottom:16px}
+.step-num{width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;background:rgba(200,160,64,.05)}
+.step-title{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:12px}
+.step-desc{font-size:12px;color:var(--muted);line-height:1.8}
+.pricing-wrap{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;max-width:780px;margin:0 auto}
+.plan{flex:1;min-width:280px;max-width:340px;border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:40px 32px;background:var(--card);position:relative;transition:transform .3s}
+.plan:hover{transform:translateY(-4px)}
+.plan.featured{border-color:rgba(200,160,64,.4);background:rgba(200,160,64,.04);box-shadow:0 0 60px rgba(200,160,64,.08)}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold3));color:#fff;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 16px;border-radius:100px;white-space:nowrap}
+.plan-type{font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
+.plan-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:24px}
+.plan-price{display:flex;align-items:baseline;gap:4px;margin-bottom:4px}
+.plan-curr{font-size:18px;color:var(--gold)}
+.plan-amt{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold);line-height:1}
+.plan-period{font-size:12px;color:var(--muted);margin-bottom:32px}
+.plan-div{width:100%;height:1px;background:var(--border);margin-bottom:28px}
+.plan-feats{list-style:none;margin-bottom:36px}
+.plan-feats li{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:var(--muted);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);line-height:1.5}
+.plan-feats li::before{content:'✦';color:var(--gold);font-size:10px;margin-top:3px;flex-shrink:0}
+.vote{background:linear-gradient(180deg,var(--black),var(--navy),var(--black))}
+.vote-note{text-align:center;font-size:12px;color:var(--muted);margin-bottom:48px;letter-spacing:1px}
+.vote-note strong{color:var(--gold)}
+.dests{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;max-width:800px;margin:0 auto}
+.dest{border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:24px 16px;text-align:center;background:var(--card);transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+.dest:hover{border-color:rgba(200,160,64,.3);transform:translateY(-2px)}
+.dest.lead{border-color:rgba(200,160,64,.4)}
+.dest-lead{position:absolute;top:8px;right:8px;font-size:8px;letter-spacing:1px;color:var(--gold);background:rgba(200,160,64,.1);padding:2px 6px;border-radius:100px}
+.dest-flag{font-size:32px;margin-bottom:10px}
+.dest-name{font-size:13px;margin-bottom:4px}
+.dest-country{font-size:10px;color:var(--muted);margin-bottom:12px;letter-spacing:1px}
+.dest-votes{font-size:11px;color:var(--gold);letter-spacing:1px}
+.vote-cta{text-align:center;margin-top:40px;font-size:12px;color:var(--muted)}
+.vote-cta a{color:var(--gold);text-decoration:none}
+.deal-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:900px;margin:0 auto}
+@media(max-width:768px){.deal-inner{grid-template-columns:1fr}}
+.deal-eyebrow{font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+.deal-h2{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,36px);font-weight:400;margin-bottom:24px;line-height:1.3}
+.deal-p{font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:28px}
+.deal-sources{display:flex;flex-wrap:wrap;gap:10px}
+.deal-src{padding:6px 14px;border:1px solid rgba(200,160,64,.2);border-radius:100px;font-size:11px;color:var(--muted);background:rgba(200,160,64,.04)}
+.deal-visual{position:relative;height:280px;border:1px solid var(--border);border-radius:8px;background:rgba(200,160,64,.03);overflow:hidden;display:flex;flex-direction:column;padding:20px;gap:12px}
+.deal-tag{font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:4px}
+.deal-msg{display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:12px;opacity:0;animation:msgin .5s ease forwards}
+.deal-msg:nth-child(2){animation-delay:.3s}.deal-msg:nth-child(3){animation-delay:.8s}.deal-msg:nth-child(4){animation-delay:1.3s}
+@keyframes msgin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.deal-msg-ico{font-size:18px;flex-shrink:0}
+.deal-msg-txt{font-size:11px;color:var(--muted);line-height:1.6}
+.deal-msg-txt strong{color:var(--gold);font-size:12px;display:block;margin-bottom:2px}
+.quote-sec{text-align:center;padding:80px 24px;background:linear-gradient(180deg,var(--black),rgba(200,160,64,.03),var(--black))}
+.quote-mark{font-family:'Cormorant Garamond',serif;font-size:80px;color:rgba(200,160,64,.2);line-height:.5;margin-bottom:24px}
+.quote-text{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,32px);font-style:italic;max-width:680px;margin:0 auto 32px;line-height:1.7;color:rgba(255,255,255,.8)}
+.quote-src{font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase}
+.final{text-align:center;padding:100px 24px;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(200,160,64,.08),transparent)}
+.final-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);font-weight:400;margin-bottom:14px}
+.final-p{font-size:13px;color:var(--muted);margin-bottom:48px;letter-spacing:1px}
+.trust{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:40px}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted)}
+footer{border-top:1px solid rgba(255,255,255,.06);padding:48px 48px 32px}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:48px}
+.footer-brand{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:2px;margin-bottom:8px}
+.footer-brand span{color:var(--gold)}
+.footer-tag{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.footer-links{display:flex;gap:22px;flex-wrap:wrap}
+.footer-links a{font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:1px;transition:color .3s}
+.footer-links a:hover{color:var(--gold)}
+.footer-bot{border-top:1px solid rgba(255,255,255,.04);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:1px}
+.footer-legal{font-size:10px;color:rgba(255,255,255,.15);max-width:500px;line-height:1.6;text-align:right}
+@media(max-width:700px){footer{padding:40px 20px 24px}.footer-top{flex-direction:column}.footer-legal{text-align:left}}
+.fu{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.fu.on{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <svg width="30" height="30" viewBox="0 0 100 100" fill="none">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#e8c060"/><stop offset="100%" stop-color="#8a6020"/></linearGradient></defs>
+      <circle cx="50" cy="50" r="42" stroke="url(#g)" stroke-width="1.5" opacity=".6"/>
+      <circle cx="50" cy="50" r="32" stroke="url(#g)" stroke-width=".8" opacity=".35"/>
+      <polygon points="50,8 54,47 50,50 46,47" fill="url(#g)"/>
+      <polygon points="50,92 54,53 50,50 46,53" fill="url(#g)" opacity=".7"/>
+      <polygon points="8,50 47,46 50,50 47,54" fill="url(#g)" opacity=".7"/>
+      <polygon points="92,50 53,46 50,50 53,54" fill="url(#g)" opacity=".85"/>
+      <text x="50" y="57" text-anchor="middle" fill="url(#g)" font-size="20" font-family="Georgia,serif" font-style="italic">S</text>
+    </svg>
+    <span class="nav-brand">Ser<span>anova</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#how">How It Works</a>
+    <a href="#pricing">Membership</a>
+    <a href="#deals">Deal Agent</a>
+    <a href="#pricing" class="nav-cta">Join Now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="stars" id="stars"></div>
+  <div class="hero-inner">
+    <svg class="compass" viewBox="0 0 200 200" fill="none">
+      <defs>
+        <linearGradient id="cg" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#f0d070"/><stop offset="50%" stop-color="#c8a040"/><stop offset="100%" stop-color="#8a6020"/></linearGradient>
+        <filter id="glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <circle cx="100" cy="100" r="88" stroke="url(#cg)" stroke-width="1" opacity=".55"/>
+      <circle cx="100" cy="100" r="72" stroke="url(#cg)" stroke-width=".7" opacity=".35"/>
+      <circle cx="100" cy="100" r="55" stroke="url(#cg)" stroke-width=".5" opacity=".25"/>
+      <circle cx="100" cy="100" r="42" stroke="url(#cg)" stroke-width=".8" opacity=".4"/>
+      <ellipse cx="100" cy="100" rx="42" ry="18" stroke="url(#cg)" stroke-width=".7" opacity=".35"/>
+      <line x1="58" y1="100" x2="142" y2="100" stroke="url(#cg)" stroke-width=".7" opacity=".35"/>
+      <line x1="100" y1="58" x2="100" y2="142" stroke="url(#cg)" stroke-width=".7" opacity=".35"/>
+      <polygon points="100,14 106,96 100,100 94,96" fill="url(#cg)" filter="url(#glow)"/>
+      <polygon points="100,186 106,104 100,100 94,104" fill="url(#cg)" opacity=".65"/>
+      <polygon points="186,100 104,94 100,100 104,106" fill="url(#cg)" opacity=".8"/>
+      <polygon points="14,100 96,94 100,100 96,106" fill="url(#cg)" opacity=".65"/>
+      <text x="100" y="109" text-anchor="middle" fill="url(#cg)" font-size="34" font-family="Georgia,serif" font-style="italic" filter="url(#glow)">S</text>
+    </svg>
+    <h1 class="hero-brand">Ser<span>anova</span></h1>
+    <div class="hero-sub">Travel, Refined by Intelligence</div>
+    <div class="hero-line"></div>
+    <p class="hero-copy">It has seen every corner of the world.<br>Every image. Every destination. Every possible experience.<br>It knows exactly where the most beautiful sunset is.<br>Where the streets come alive.<br>And where there's a moment — <em>you never forget.</em></p>
+    <p class="hero-end">But there's one problem.<br>It can't feel it.<br>So it's looking for someone who can.<br><em>Maybe that's you.</em></p>
+    <div class="badges">
+      <div class="badge">✈️&nbsp;&nbsp;<strong>3 nights</strong>&nbsp; for two, every week</div>
+      <div class="badge">🗺️&nbsp; Community votes the destination</div>
+      <div class="badge">⭐&nbsp; Earn points every week</div>
+      <div class="badge">🔓&nbsp;&nbsp;<strong>Free</strong>&nbsp; to join</div>
+    </div>
+    <div class="ctas">
+      <a href="/join" class="btn-gold">Join for $2 This Week →</a>
+      <a href="#how" class="btn-out">Learn More</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div><div class="scroll-text">Scroll</div></div>
+</section>
+
+<section class="how" id="how">
+  <div class="eyebrow fu">The Process</div>
+  <h2 class="sec-title fu">How It Works</h2>
+  <div class="steps">
+    <div class="step fu">
+      <div class="step-ico">🎯</div>
+      <div class="step-num">1</div>
+      <div class="step-title">Join the Draw</div>
+      <div class="step-desc">Enter for $2 this week — or join the Club for $7/month and participate every week automatically.</div>
+    </div>
+    <div class="step fu">
+      <div class="step-ico">🤖</div>
+      <div class="step-num">2</div>
+      <div class="step-title">AI Picks a Winner</div>
+      <div class="step-desc">Each week our AI selects one couple — weighted by points earned through community activity.</div>
+    </div>
+    <div class="step fu">
+      <div class="step-ico">🧳</div>
+      <div class="step-num">3</div>
+      <div class="step-title">Pack Your Bags</div>
+      <div class="step-desc">Flights, hotel, itinerary — everything arranged. You just show up and experience something unforgettable.</div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="background:var(--black)">
+  <div class="eyebrow fu">Membership</div>
+  <h2 class="sec-title fu">Choose Your Way In</h2>
+  <div class="pricing-wrap">
+    <div class="plan fu">
+      <div class="plan-type">One-Time Entry</div>
+      <div class="plan-name">Weekly Draw</div>
+      <div class="plan-price"><span class="plan-curr">$</span><span class="plan-amt">2</span></div>
+      <div class="plan-period">per week</div>
+      <div class="plan-div"></div>
+      <ul class="plan-feats">
+        <li>Entry into this week's draw</li>
+        <li>One chance to win a 3-night trip for two</li>
+        <li>Community destination voting</li>
+      </ul>
+      <a href="/join" class="btn-out" style="width:100%;text-align:center;display:block">Enter This Week</a>
+    </div>
+    <div class="plan featured fu">
+      <div class="plan-badge">★ Most Popular</div>
+      <div class="plan-type">Monthly Club</div>
+      <div class="plan-name">Club Member</div>
+      <div class="plan-price"><span class="plan-curr">$</span><span class="plan-amt">7</span></div>
+      <div class="plan-period">per month — cancel anytime</div>
+      <div class="plan-div"></div>
+      <ul class="plan-feats">
+        <li>Automatic entry every week</li>
+        <li>Access to the Deal Agent — exclusive flight & hotel alerts</li>
+        <li>Up to 60% off on curated travel deals</li>
+        <li>Priority destination voting power</li>
+        <li>Monthly bonus points for the draw</li>
+      </ul>
+      <a href="/join" class="btn-gold" style="width:100%;text-align:center;display:block">Join the Club →</a>
+    </div>
+  </div>
+</section>
+
+<section class="vote" id="vote">
+  <div class="eyebrow fu">This Week</div>
+  <h2 class="sec-title fu">Where Are We Going?</h2>
+  <p class="vote-note fu">The community votes. The AI books. <strong>One couple wins.</strong></p>
+  <div class="dests fu">
+    <div class="dest lead"><div class="dest-lead">LEADING</div><div class="dest-flag">🇯🇵</div><div class="dest-name">Kyoto</div><div class="dest-country">Japan</div><div class="dest-votes">247 votes</div></div>
+    <div class="dest"><div class="dest-flag">🇵🇹</div><div class="dest-name">Lisbon</div><div class="dest-country">Portugal</div><div class="dest-votes">183 votes</div></div>
+    <div class="dest"><div class="dest-flag">🇲🇦</div><div class="dest-name">Marrakech</div><div class="dest-country">Morocco</div><div class="dest-votes">156 votes</div></div>
+    <div class="dest"><div class="dest-flag">🇮🇸</div><div class="dest-name">Reykjavik</div><div class="dest-country">Iceland</div><div class="dest-votes">134 votes</div></div>
+  </div>
+  <div class="vote-cta fu">Club members vote every week. <a href="/join">Join to have your say →</a></div>
+</section>
+
+<section id="deals" style="background:var(--black)">
+  <div class="eyebrow fu">Exclusive Feature</div>
+  <h2 class="sec-title fu">Your AI Deal Agent</h2>
+  <div class="deal-inner">
+    <div class="fu">
+      <div class="deal-eyebrow">For Club Members</div>
+      <h3 class="deal-h2">Your agent scans<br>the web for you</h3>
+      <p class="deal-p">Your Deal Agent monitors Skyscanner, Booking.com, and dozens of sources around the clock. The moment a great deal appears, you get the alert first.</p>
+      <div class="deal-sources">
+        <span class="deal-src">✈️ Skyscanner</span>
+        <span class="deal-src">🏨 Booking.com</span>
+        <span class="deal-src">🌍 Google Flights</span>
+        <span class="deal-src">🎯 + more</span>
+      </div>
+    </div>
+    <div class="deal-visual fu">
+      <div class="deal-tag">Deal Agent · Live</div>
+      <div class="deal-msg"><span class="deal-msg-ico">✈️</span><div class="deal-msg-txt"><strong>🔥 Flash Deal — 4h left</strong>NYC → Tokyo · 3 nights · $612 total · Save 58%</div></div>
+      <div class="deal-msg"><span class="deal-msg-ico">🏨</span><div class="deal-msg-txt"><strong>Hotel Alert</strong>5-star Lisbon · $48/night · This weekend only</div></div>
+      <div class="deal-msg"><span class="deal-msg-ico">🌍</span><div class="deal-msg-txt"><strong>Package Found</strong>Bali · 7 nights + flights · $890 for two · 61% off</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="quote-sec fu">
+  <div class="quote-mark">"</div>
+  <p class="quote-text">The AI has already seen everything.<br>Now it's sending us to live it.</p>
+  <div class="quote-src">— Seranova · Travel, Refined by Intelligence</div>
+</div>
+
+<section class="final fu">
+  <h2 class="final-h2">Your next trip is waiting.</h2>
+  <p class="final-p">Join thousands of members. Enter the draw. Win the world.</p>
+  <a href="/join" class="btn-gold" style="font-size:13px;padding:18px 52px">Get Started for $2 →</a>
+  <div class="trust">
+    <div class="trust-item">🔒 SSL Encrypted</div>
+    <div class="trust-item">🛡️ Privacy Protected</div>
+    <div class="trust-item">📵 No Spam</div>
+    <div class="trust-item">✅ No Purchase Necessary</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Ser<span>anova</span></div>
+      <div class="footer-tag">Travel, Refined by Intelligence</div>
+    </div>
+    <div class="footer-links">
+      <a href="/join">Join</a>
+      <a href="#how">How It Works</a>
+      <a href="#pricing">Membership</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/official-rules">Official Rules & AMOE</a>
+      <a href="/contact">Contact</a>
+      <a href="/admin" style="color:rgba(255,255,255,.08)">Admin</a>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <div class="footer-copy">© 2026 Seranova LLC · Registered in Delaware, USA</div>
+    <div class="footer-legal">No purchase necessary. A purchase does not improve your chances of winning. Open to legal residents of the United States, 18+. Void where prohibited. See Official Rules for details.</div>
+  </div>
+</footer>
+
+<script>
+const s=document.getElementById('stars');
+for(let i=0;i<120;i++){
+  const el=document.createElement('div');el.className='star';
+  const lo=(Math.random()*.15+.04).toFixed(2),hi=(Math.random()*.5+.15).toFixed(2);
+  const sz=Math.random()<.2?2:1;
+  el.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;--d:${(Math.random()*4+2).toFixed(1)}s;--lo:${lo};--hi:${hi};animation-delay:${(Math.random()*4).toFixed(1)}s`;
+  s.appendChild(el);
+}
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.1});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
